@@ -37,3 +37,9 @@ model Message {
   role      Role
   createdAt DateTime @default(now())
 }
+
+model Sample {
+  id        String   @id @default(auto()) @map("_id") @db.ObjectId
+  name      String
+  createdAt DateTime @default(now())
+}
