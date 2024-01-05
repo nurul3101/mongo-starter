@@ -1,26 +1,20 @@
-import { PrismaClient, Role } from "@prisma/client";
+import { PrismaClient } from "@prisma/client";
 
 const prisma = new PrismaClient();
 
 async function main() {
-  const MongoID = "64ba7c291ec8757fd5c7a241";
-  await prisma.chat.create({
+  await prisma.task.create({
     data: {
-      id: "1",
-      model: "chat",
-      path: "chat",
-      temperature: 0,
-      title: "Chat",
+      title: "Learn Prisma",
+      description: "Learn how to use Prisma",
+      date: "2021-10-10",
       userId: "1",
-      messages: {
-        create: {
-          id: MongoID,
-          content: "Hello World",
-          role: Role.user,
-        },
-      },
     },
   });
+
+  const tasks = await prisma.task.findMany({});
+
+  console.log(tasks);
 }
 
 main()
